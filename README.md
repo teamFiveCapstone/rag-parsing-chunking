@@ -8,14 +8,15 @@ PINECONE_API_KEY=abc
 ```
 
 Run
+
 ```
 docker compose up
 ```
-
 
 # Parsing with Docling
 
 # Chunking and Embedding with Llamaindex
 
-# Database with Pinecone 
-- creates index for you if it doesnt already exist
+# Database with Pinecone
+
+- creates index name lion for you if it doesnt already exist
