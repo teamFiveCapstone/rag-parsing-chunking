@@ -1,3 +1,5 @@
+Un comment out the docling code in main.py first
+
 Create .env including:
 
 ```
