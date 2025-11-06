@@ -5,3 +5,4 @@ llama-index-vector-stores-pinecone
 pinecone
 openai
 python-dotenv
+pymongo
