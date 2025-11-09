@@ -4,6 +4,7 @@ services:
     volumes:
       - ./src:/src
       - ./files:/files
+      - ~/.aws:/root/.aws
     working_dir: /src
     env_file:
       - .env

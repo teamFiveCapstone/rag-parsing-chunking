@@ -1,6 +1,6 @@
-Un comment out the docling code in main.py first
-
 Create .env including:
+
+Make sure you have the AWS cli installed and connect to your AWS account
 
 ```
 OPENAI_API_KEY=123
