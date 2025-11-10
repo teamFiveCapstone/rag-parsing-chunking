@@ -39,19 +39,20 @@ def main(bucket_name, s3_key):
     connection_string = "http://host.docker.internal:3000/v1/api/bucketconfig"
     # Extract folder name from S3 key instead of local file path
     s3_dir = os.path.dirname(s3_key)
-    print("!!!!!!!!!!!!!", s3_dir)
-    print("!!!!!!!!!!!!!KEYYYYY", s3_key)
     folder_path_for_query = os.path.basename(s3_dir) if s3_dir else "wild_animals"
 
     try:
-        response = requests.get(f"{connection_string}/{folder_path_for_query}")
-
-        if response.status_code != 200:
+        # response = requests.get(f"{connection_string}/{folder_path_for_query}")
+        response = 200
+        # response.status_code
+        if response!= 200:
             print(f"API request failed with status code: {response.status_code}")
             exit(1)  # Exit with error code 1
 
         print(response)
-        config = response.json()
+        # config = response.json()
+        config = {'_id': '690cf4920809672de613c84a', 'chunk_overlap': '20', 'chunk_size': '500', 'chunk_strategy': 'sentence', 'metadata_extraction': 'default', 'namespace': 'lion', 'folder_path': 'wild-cats-pipeline', 'index_name': 'lion'}
+
     except Exception as e:
       print(f"Error fetching config from API: {e}")
       exit(1)  # Exit with error code 1
