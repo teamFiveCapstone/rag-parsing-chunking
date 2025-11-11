@@ -33,6 +33,9 @@ def download_from_s3(bucket_name, s3_key):
     return local_path
 
 def main(bucket_name, s3_key):
+    print(f"Pinecone api key: {os.environ["PINECONE_API_KEY"]}")
+    print(f"Openapi api key: {os.environ["OPENAI_API_KEY"]}")
+
     # Download file from S3 to temporary location
     file_path = download_from_s3(bucket_name, s3_key)
 
@@ -87,6 +90,7 @@ def main(bucket_name, s3_key):
 
     # Initialize connection to Pinecone
     pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"])
+    print("successfully created pinecone instance")
 
     # Get or create index (text-embedding-3-small has 1536 dimensions)
     # Create your index (can skip this step if your index already exists)
@@ -97,22 +101,18 @@ def main(bucket_name, s3_key):
             spec=ServerlessSpec(cloud="aws", region="us-east-1"),
         )
     except Exception:
-        # Index already exists, continue
+        print("index already exists, skipping")
         pass
 
-    # Initialize your index
     pinecone_index = pc.Index(index_name)
 
-    # Initialize VectorStore with namespace
     vector_store = PineconeVectorStore(
         pinecone_index=pinecone_index,
         namespace=namespace
     )
 
-    # Create embedding model
     embed_model = OpenAIEmbedding(model="text-embedding-3-small")
 
-    # Create ingestion pipeline with transformations
     pipeline = IngestionPipeline(
         transformations=[
             SentenceSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap),  # measure by tokens
