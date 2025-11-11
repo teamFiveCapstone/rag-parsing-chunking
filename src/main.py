@@ -89,7 +89,7 @@ def main(bucket_name, s3_key):
     file_md = SimpleDirectoryReader(input_files=[md_file_path]).load_data()
 
     # Initialize connection to Pinecone
-    pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"])
+    pc = Pinecone(api_key=os.environ["PINECONE_API_KEY"]["PINECONE_API_KEY"])
     print("successfully created pinecone instance")
 
     # Get or create index (text-embedding-3-small has 1536 dimensions)
@@ -111,7 +111,7 @@ def main(bucket_name, s3_key):
         namespace=namespace
     )
 
-    embed_model = OpenAIEmbedding(model="text-embedding-3-small")
+    embed_model = OpenAIEmbedding(model="text-embedding-3-small", api_key=os.environ["OPENAI_API_KEY"]["OPENAI_API_KEY"])
 
     pipeline = IngestionPipeline(
         transformations=[
