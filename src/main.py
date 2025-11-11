@@ -33,8 +33,8 @@ def download_from_s3(bucket_name, s3_key):
     return local_path
 
 def main(bucket_name, s3_key):
-    print(f"Pinecone api key: {os.environ["PINECONE_API_KEY"]}")
-    print(f"Openapi api key: {os.environ["OPENAI_API_KEY"]}")
+    print(f'Pinecone api key: {os.environ["PINECONE_API_KEY"]}')
+    print(f'Openapi api key: {os.environ["OPENAI_API_KEY"]}')
 
     # Download file from S3 to temporary location
     file_path = download_from_s3(bucket_name, s3_key)
